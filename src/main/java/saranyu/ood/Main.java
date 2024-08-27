@@ -1,9 +1,13 @@
 package saranyu.ood;
 
+import java.util.Random;
+
 public class Main {
     public static void main(String[] args) {
         System.out.println("Hello! Welcome to Dumb Call Center");
-        for(int i=0; i<10; i++) {
+        Random rand = new Random();
+        int minNum = rand.nextInt(200);
+        for(int i=0; i<minNum; i++) {
             IEmployee respondent = new Respondent();
             IEmployee manager = new Manager();
             IEmployee director = new Director();
@@ -11,7 +15,7 @@ public class Main {
             ManagerResourceManager.unassignedManagers.add(manager);
             DirectorResourceManager.unassignedDirectors.add(director);
         }
-        for(int i=0; i<10; i++) {
+        for(int i=0; i<minNum; i++) {
             Call call = new Call();
             CallCenter.queueCall(call);
         }
