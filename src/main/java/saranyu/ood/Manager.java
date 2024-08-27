@@ -30,15 +30,16 @@ public class Manager implements IEmployee{
         System.out.println("Call "+call.getCallId()+" received by "+this.getType()+" "+this.getId());
         Random random = new Random();
         int randomNumber = random.nextInt(1500);
+        boolean isResolved = false;
         if(randomNumber % 3 == 0) {
             IEmployee superior = EmployeeAllocator.getSuperiorEmployee(this);
             System.out.println("Passing "+call.getCallId()+" on to superior "+superior.getType()+" "+superior.getId());
-            return superior.execute(call);
+            isResolved = superior.execute(call);
         } else {
             System.out.println("Call "+call.getCallId()+" resolved by "+this.getType()+" "+this.getId());
         }
         EmployeeReliever.relieveEmployee(this);
-        return true;
+        return isResolved;
     }
 
     public void setId(Integer id) {
